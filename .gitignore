@@ -1,0 +1,5 @@
+**/node_modules
+build/
+chave.pem
+.DS_Store
+.env
