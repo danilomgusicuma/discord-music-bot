@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { YT_API_KEY } from "../constants/Constants";
+import { YT_API_KEY } from "../constants/envs";
 
 const api: AxiosInstance = axios.create({
   baseURL: "https://www.googleapis.com/youtube/v3",

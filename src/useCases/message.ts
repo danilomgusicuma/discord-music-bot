@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
-import {prefix} from "../config.json";
+import {prefix} from "../../config.json";
 import execute from "./execute";
-import { getConnection } from "../model/queue";
+import { getQueue } from "../queueManager/queue";
 import skip from "./skip";
 import stop from "./stop";
 
@@ -9,18 +9,21 @@ export const onMessage = (message: Message) => {
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
 
-  const connection = getConnection();
+  const serverId = message.guild?.id;
+
+  if (!serverId) return console.log("server id is undefined");
+  const queue = getQueue(serverId);
 
   if (message.content.startsWith(`${prefix}sing`)) {
       execute(message);
       return;
   } else if (message.content.startsWith(`${prefix}skip`)) {
-      if(!connection) return;
-      skip( connection, message);
+      if(!queue) return;
+      skip( queue, message);
       return;
   } else if (message.content.startsWith(`${prefix}stop`)) {
-      if(!connection) return;
-      stop(connection, message);
+      if(!queue) return;
+      stop(queue, message);
       return;
   } else {
       message.channel.send("hmm, não entendi");
