@@ -1,9 +1,9 @@
 import "dotenv/config";
 import Discord from "discord.js";
 
-import { isReady } from "./src/useCases/ready";
-import { onMessage } from "./src/useCases/message";
-import { DISC_TOKEN } from "./src/constants/envs";
+import { isReady } from "./useCases/ready";
+import { onMessage } from "./useCases/message";
+import { DISC_TOKEN } from "./constants/envs";
 
 const client = new Discord.Client();
 client.login(DISC_TOKEN);

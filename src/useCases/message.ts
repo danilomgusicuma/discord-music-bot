@@ -11,17 +11,17 @@ export const onMessage = (message: Message) => {
 
   const serverId = message.guild?.id;
 
-  if (!serverId) return console.log("server id is undefined");
+  if (!serverId) return console.log("o id do servidor não ta definido");
   const queue = getQueue(serverId);
 
-  if (message.content.startsWith(`${prefix}sing`)) {
+  if (message.content.startsWith(`${prefix}canta`)) {
       execute(message);
       return;
-  } else if (message.content.startsWith(`${prefix}skip`)) {
+  } else if (message.content.startsWith(`${prefix}pula`)) {
       if(!queue) return;
       skip( queue, message);
       return;
-  } else if (message.content.startsWith(`${prefix}stop`)) {
+  } else if (message.content.startsWith(`${prefix}para`)) {
       if(!queue) return;
       stop(queue, message);
       return;
